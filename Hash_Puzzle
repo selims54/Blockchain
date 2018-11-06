@@ -1,0 +1,26 @@
+import hashlib
+
+for k in range(2,6):
+    leading=''
+    targetmid=''
+    trailing=''
+    for a in range(0,k):
+      leading+='0'
+    for a in range(1,(61-k)):
+      trailing+='0'
+    targetmid='abc'
+    target=leading+targetmid+trailing
+    for j in range(5):
+        i=0
+        while True:
+            test_hash=hashlib.sha256( (str(i)+'selimsarac'+str(j)).encode('utf-16'))
+            if test_hash.hexdigest()<target:
+                print ('For message:','selimsarac'+str(j))
+                print('For target: ',target)
+                print ('found at nonce= ', i)
+                print('Hash with nonce is= ', test_hash.hexdigest())
+                print(" ")
+                break
+            i+=1
+    print('There are %s iterations for the number leading %s zeros '%(i,k))
+    print(" ")
